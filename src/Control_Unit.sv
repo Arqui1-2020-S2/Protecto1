@@ -15,11 +15,11 @@ module Control_Unit(input 	logic[3:0] OpCode,
 			4'b0101: OUT = 10'b0100000001;//Load byte
 			4'b0110: OUT = 10'b000000001X;//Store word
 			4'b0111: OUT = 10'b000000001X;//Store byte
-			4'b1000: OUT = 10'b01X000000;//Add
-			4'b1001: OUT = 10'b01X100000;//Add Imm
-			4'b1010: OUT = 10'b01X001000;//Substract
-			4'b1011: OUT = 10'b01X010000;//Divide
-			4'b1100: OUT = 10'b01X011000;//Shift Left
+			4'b1000: OUT = 10'b0100000000;//Add
+			4'b1001: OUT = 10'b0101100000;//Add Imm
+			4'b1010: OUT = 10'b0100001000;//Substract
+			4'b1011: OUT = 10'b0100010000;//Divide
+			4'b1100: OUT = 10'b0100011000;//Shift Left
 			default: OUT = 10'bX;
 		endcase
 	end
