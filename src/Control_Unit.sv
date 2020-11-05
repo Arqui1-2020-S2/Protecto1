@@ -11,10 +11,10 @@ module Control_Unit(input 	logic[3:0] OpCode,
 			4'b0001: OUT = 10'b10100011XX;//Branch
 			4'b0010: OUT = 10'b10100011XX;//Branch equal
 			4'b0011: OUT = 10'b10100011XX;//Branch less than
-			4'b0100: OUT = 10'b01X000001;//Load word
-			4'b0101: OUT = 10'b01X000001;//Load byte
-			4'b0110: OUT = 10'b00X00001X;//Store word
-			4'b0111: OUT = 10'b00X00001X;//Store byte
+			4'b0100: OUT = 10'b0100000001;//Load word
+			4'b0101: OUT = 10'b0100000001;//Load byte
+			4'b0110: OUT = 10'b000000001X;//Store word
+			4'b0111: OUT = 10'b000000001X;//Store byte
 			4'b1000: OUT = 10'b01X000000;//Add
 			4'b1001: OUT = 10'b01X100000;//Add Imm
 			4'b1010: OUT = 10'b01X001000;//Substract
