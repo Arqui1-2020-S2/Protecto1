@@ -258,8 +258,12 @@ def analyzeLine(line):
                 #  con su respectivo numero de linea
                 branch_instr.append([content, lineCodeCount])
 
+            # Instruccion NOP
+            elif opname == NOP:
+                program.append("0"*32)
+
             else:
-                raise Exception("Instruccion '" + opname + ' no existe'"")
+                raise Exception("Instruccion '" + opname + "' no existe")
 
 """
 Funcion que se ejecuta al final del analisis para compilar las instrucciones de salto
