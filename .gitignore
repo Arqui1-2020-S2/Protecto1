@@ -1,2 +1,4 @@
-
+src/*.qpf
+src/*.qsf
+src/db
 *.bak
