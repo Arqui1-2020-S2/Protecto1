@@ -9,11 +9,11 @@ input logic RF_WE_i, BranchSelect_i, ALUOpBSelect_i,SetFlags_i, MemWE_i,WBSelect
 input logic [3:0] A3_i;
 input logic [1:0] ALUControl_i;
 
-
- logic [N-1:0] RD1, RD2, Extend;
- logic RF_WE, BranchSelect, ALUOpBSelect,SetFlags, MemWE,WBSelect;
- logic [3:0] A3;
- logic [1:0] ALUControl;
+//
+// logic [N-1:0] RD1, RD2, Extend;
+// logic RF_WE, BranchSelect, ALUOpBSelect,SetFlags, MemWE,WBSelect;
+// logic [3:0] A3;
+// logic [1:0] ALUControl;
 
 
 output logic [N-1:0] RD1_o, RD2_o, Extend_o;
@@ -22,53 +22,37 @@ output logic [3:0] A3_o;
 output logic [1:0] ALUControl_o;
 
 
-
-	always @(negedge CLK) begin
+	always @(posedge CLK) 
+	begin
 		if      (RST) 
 		begin
-			RD1 <= 0;
-			RD2 <= 0;
-			Extend <= 0;
-			RF_WE <= 0;
-			BranchSelect <= 0;
-			ALUOpBSelect <= 0;
-			SetFlags <= 0;
-			MemWE <= 0;
-			WBSelect <= 0;
-			A3 <= 0;
-			ALUControl <= 0;
+			RD1_o <= 0;
+			RD2_o <= 0;
+			Extend_o <= 0;
+			RF_WE_o <= 0;
+			BranchSelect_o <= 0;
+			ALUOpBSelect_o <= 0;
+			SetFlags_o <= 0;
+			MemWE_o <= 0;
+			WBSelect_o <= 0;
+			A3_o <= 0;
+			ALUControl_o <= 0;
 		end
 		
 		else
 		begin
-			RD1 <= RD1_i;
-			RD2 <= RD2_i;
-			Extend <= Extend_i;
-			RF_WE <= RF_WE_i;
-			BranchSelect <= BranchSelect_i;
-			ALUOpBSelect <= ALUOpBSelect_i;
-			SetFlags <= SetFlags_i;
-			MemWE <= MemWE_i;
-			WBSelect <= WBSelect_i;
-			A3 <= A3_i;
-			ALUControl <= ALUControl_i;
+			RD1_o <= RD1_i;
+			RD2_o <= RD2_i;
+			Extend_o <= Extend_i;
+			RF_WE_o <= RF_WE_i;
+			BranchSelect_o <= BranchSelect_i;
+			ALUOpBSelect_o <= ALUOpBSelect_i;
+			SetFlags_o <= SetFlags_i;
+			MemWE_o <= MemWE_i;
+			WBSelect_o <= WBSelect_i;
+			A3_o <= A3_i;
+			ALUControl_o <= ALUControl_i;
 		end
-		
-	end
-	
-	always @(posedge CLK) 
-	begin
-		RD1_o <= RD1;
-		RD2_o <= RD2;
-		Extend_o <= Extend;
-		RF_WE_o <= RF_WE;
-		BranchSelect_o <= BranchSelect;
-		ALUOpBSelect_o <= ALUOpBSelect;
-		SetFlags_o <= SetFlags;
-		MemWE_o <= MemWE;
-		WBSelect_o <= WBSelect;
-		A3_o <= A3;
-		ALUControl_o <= ALUControl;
-	end
+		end
 	
 	endmodule

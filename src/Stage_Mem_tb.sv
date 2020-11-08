@@ -7,7 +7,10 @@ module Stage_Mem_tb();
 //Memory manager
 
 
-logic CLK_tb;
+logic CLK_tb, CLK_neg;
+
+
+
 logic CLK, RST_pipe_ex_mem,RST_pipe_mem_wb;
 logic [31:0] RD2_ex, RD2_mem;
 logic RF_WE_ex,RF_WE_mem, RF_WE_wb;
@@ -36,37 +39,42 @@ DataMemoryManager dataMemoryManager (.address_i(AluResult_mem), .CLK(CLK),
 								.data_i(RD2_mem), .wren_i(MemWE_mem), 
 								.data_o(ReadData_mem));
 
+								
+assign CLK_neg=!CLK;
+								
 always #5 CLK_tb=!CLK_tb;
-
-
-
-always@(negedge CLK_tb)
-begin
-if(counter<100)
-begin
-RD2_ex=counter;
-AluResult_ex=counter;
-MemWE_ex=1;
-
-end
-
-#1 CLK = CLK_tb;
-end
-
-
-
 
 
 always@(posedge CLK_tb)
 begin
-RD2_ex=0;
-AluResult_ex=counter;
-MemWE_ex=0;
-#1 CLK = CLK_tb;
-counter=counter+1;
+if(counter<100)
+	begin
+	RD2_ex=counter;
+	AluResult_ex=counter;
+	MemWE_ex=1;
+	end
+else
+	begin
+	AluResult_ex=counter-100;
+	RD2_ex=0;
+	MemWE_ex=0;
+	end
+
+if(counter>200) 
+begin
+$finish;
 end
 
+#1 CLK = CLK_tb;
+counter=counter+1;
 
+
+end
+
+always@(negedge CLK_tb)
+begin
+#1 CLK = CLK_tb;
+end
 
 
 
@@ -77,7 +85,6 @@ initial
 begin
 CLK_tb=1;
 counter=0;
-#5000 $finish;
 end
 
 
