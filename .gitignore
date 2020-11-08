@@ -6,3 +6,4 @@ src/db
 src/simulation/
 src/output_files/
 src/incremental_db/
+src/greybox_tmp/
