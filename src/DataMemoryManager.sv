@@ -1,10 +1,10 @@
-module DataMemoryManager(address_i, CLK, data_i, wren_i, data_o,wren,sel);
+module DataMemoryManager(address_i, CLK, data_i, wren_i, data_o);
 input logic [31:0] address_i, data_i;
 input logic  CLK, wren_i;
 output logic [31:0] data_o;
 
-output logic [1:0] sel;
-output logic [3:0] wren;
+logic [1:0] sel;
+logic [3:0] wren;
 logic [31:0] data [3:0];
 
 
