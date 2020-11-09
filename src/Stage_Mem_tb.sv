@@ -1,14 +1,9 @@
-// Modelsim-ASE requires a timescale directive
-`timescale 1 ps / 1 ps
+
 module Stage_Mem_tb();
 //Contiene:
 //Pipe EX/MEM
 //Pipe MEM/WB
 //Memory manager
-
-
-logic CLK_tb, CLK_neg;
-
 
 
 logic CLK, RST_pipe_ex_mem,RST_pipe_mem_wb;
@@ -21,7 +16,7 @@ logic [3:0] A3_ex, A3_mem, A3_wb;
 logic [31:0] ReadData_mem, ReadData_wb;
 
 logic [31:0] counter;
-
+logic byte_mode_i = 0;
 //Contiene:
 //Pipe EX/MEM
 //Pipe MEM/WB
@@ -37,54 +32,47 @@ Pipe_MEM_WB pipe_MEM_WB  (.CLK(CLK), .RST(RST_pipe_mem_wb),
 
 DataMemoryManager dataMemoryManager (.address_i(AluResult_mem), .CLK(CLK), 
 								.data_i(RD2_mem), .wren_i(MemWE_mem), 
-								.data_o(ReadData_mem));
+								.data_o(ReadData_mem),.byte_mode_i(byte_mode_i));
 
 								
-assign CLK_neg=!CLK;
 								
-always #5 CLK_tb=!CLK_tb;
-
-
-always@(posedge CLK_tb)
-begin
-if(counter<100)
-	begin
-	RD2_ex=counter;
-	AluResult_ex=counter;
-	MemWE_ex=1;
-	end
-else
-	begin
-	AluResult_ex=counter-100;
-	RD2_ex=0;
-	MemWE_ex=0;
-	end
-
-if(counter>200) 
-begin
-$finish;
-end
-
-#1 CLK = CLK_tb;
-counter=counter+1;
-
-
-end
-
-always@(negedge CLK_tb)
-begin
-#1 CLK = CLK_tb;
-end
-
-
-
-
+always #5 CLK=!CLK;
 
 
 initial 
 begin
-CLK_tb=1;
+CLK=1;
 counter=0;
+
+for(counter=0; counter<16; counter=counter+4)
+begin
+RD2_ex=counter;
+MemWE_ex=1;
+AluResult_ex=counter;
+wait(CLK == 0);
+wait(CLK == 1);
+end
+
+wait(CLK == 1);
+counter=0;
+for(counter=0; counter<16; counter=counter+4)
+begin
+RD2_ex=110011;
+MemWE_ex=0;
+AluResult_ex=counter;
+wait(CLK == 0);
+wait(CLK == 1);
+
+wait(CLK == 0);
+wait(CLK == 1);
+#1;
+assert (ReadData_wb == AluResult_wb) else $error("ERROR: AluResult_wb:%0d, ReadData_wb:%0d",counter,ReadData_wb);
+
+end
+
+
+
+$finish;
 end
 
 

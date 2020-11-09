@@ -1,8 +1,7 @@
-// Modelsim-ASE requires a timescale directive
-`timescale 1 ps / 1 ps
+
 module DataMemoryManager_tb();
 logic [31:0] address_i, data_i,data_o;
-logic  CLK, wren_i;
+logic  CLK, wren_i,byte_mode_i;
 logic [31:0] i;
 logic [3:0] wren;
 logic [1:0] sel;
@@ -12,14 +11,14 @@ logic [1:0] sel;
 
 DataMemoryManager DUT (.address_i(address_i), .CLK(CLK), 
 								.data_i(data_i), .wren_i(wren_i), 
-								.data_o(data_o));
+								.data_o(data_o), .byte_mode_i(byte_mode_i));
 
 	
 initial
 begin
 CLK=0;
 wren_i=0;
-
+byte_mode_i=0;
 
 
 for(i=32'h00000;i<32'h000F;i=i+1)
