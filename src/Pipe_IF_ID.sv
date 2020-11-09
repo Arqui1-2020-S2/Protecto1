@@ -5,10 +5,6 @@ output logic [N-1:0] instruction_o;
 //logic [N-1:0] instruction;
 
 
-
-	always @(negedge CLK) begin
-		
-	end
 	
 	always @(posedge CLK) begin
 		if      (RST) instruction_o <= 0;

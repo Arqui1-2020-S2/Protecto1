@@ -37,7 +37,11 @@ DataMemSection datamem_2(
 	.data(data_i),
 	.wren(wren[2]),
 	.q(data[2]));
+	
+	
+	
 endmodule
+
 
 
 
