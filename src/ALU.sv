@@ -14,7 +14,7 @@ Full_Subtractor #(N) subtractor(A, B, 1'b0, Subtraction, Bout);
 Left_Shift      #(N) lshift(A, B, LeftShift);
 
 // Seleccion del resultado deseado
-Mux_4 #(N) muxcontrol(ALUControl, Addition, Subtraction, 1'bX, LeftShift, ALUResult);
+Mux_4 #(N) muxcontrol(ALUControl, Addition, Subtraction, 32'b0, LeftShift, ALUResult);
 
 // Determinacion de las banderas
 assign Neg = ALUResult[N-1]; // Bandera negativo
