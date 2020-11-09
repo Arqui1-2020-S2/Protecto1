@@ -8,7 +8,9 @@ module Ram #(parameter G = 18, parameter mif_filename="mem_data/in_ram.txt")
 				 );
 	// Memoria
 //   logic [7:0] Memory [0:D-1] /* synthesis ram_init_file = "../../mem_data/test.hex" */;
-	logic [7:0] Memory [0:2**G-1];
+//	logic [7:0] Memory [0:2**G-1];
+	logic [7:0] Memory [0:2**10-1];
+
 	logic [23:0] zero = 0;
 	// Variables para direccionamiento de memoria 
 	logic [G-1:0] Addr1, Addr2, Addr3;
