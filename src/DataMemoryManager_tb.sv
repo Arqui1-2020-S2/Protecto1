@@ -21,7 +21,7 @@ wren_i=0;
 byte_mode_i=0;
 
 
-for(i=32'h00000;i<32'h000F;i=i+1)
+for(i=32'h00000;i<32'h0000F;i=i+1)
 begin
 data_i=i;
 address_i=i;
