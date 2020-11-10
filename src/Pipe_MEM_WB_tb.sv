@@ -32,6 +32,28 @@ Pipe_MEM_WB #(N) DUT1(
     assign WBSelect_o = 0;
     logic [N-1:0] data_to_wb;
     assign data_to_wb = WBSelect_o ? AluResult_o : ReadData_o;
+
+    //Señales de entrada para register file
+    logic RST_RegisterFile; /* Bandera de reset*/
+    logic R15_i; /* Bandera de reset*/
+    logic [N-1:0] A1_i, A2_i;
+    logic [N-1:0] R1_o, R2_0;
+    //Señales de salida para register file
+
+
+    RegisterFile #(N) DUT2(
+        .clk(CLK),
+        .rst(RST_RegisterFile),
+        .WE3(RF_WE_o_Pipe_EX_MEM),
+        .A1(A1_i),
+        .A2(A2_i),
+        .A3(A3_o),
+        .WD3(data_to_wb),
+        .R15(R15_i),
+        .RD1(R1_o),
+        .RD2(R2_o));
+
+
 initial begin 
     RST_DUT1 = 0;
     ReadData_i = 32'h7894ACD0;
@@ -39,7 +61,7 @@ initial begin
     RF_WE_i = 1;
     MemWE_i = 1;
     WBSelect_i = 0; //Cambio de señal para seleccionar ahora ReadData_o del mux simulado
-    A3_i = 4'b0011;
+    A3_i = 4'b0011;  //REG03
     #101
     $display("Vericando valores de salida de Pipe MEM_WB");
     assert(AluResult_o === 32'h00000002) else $error("Valor de salida incorrecto %b",AluResult_o);
@@ -49,6 +71,6 @@ initial begin
     #101
     $display("Verificando selección de AluResult_o como valor de salida del MUX");
     assert(data_to_wb === AluResult_o) else $error("Valor de salida incorrecto %b",data_to_wb);
-
+    $display("Verificando Verificando datos en register file");
 end
 endmodule
