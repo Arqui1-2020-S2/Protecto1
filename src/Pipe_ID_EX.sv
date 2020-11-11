@@ -5,9 +5,9 @@ module Pipe_ID_EX  #(N=32) (CLK, RST,
 
 input logic CLK, RST;
 input logic [N-1:0] RD1_i, RD2_i, Extend_i;
-input logic RF_WE_i, BranchSelect_i, ALUOpBSelect_i,SetFlags_i, MemWE_i,WBSelect_i;
+input logic RF_WE_i, ALUOpBSelect_i,SetFlags_i, MemWE_i,WBSelect_i;
 input logic [3:0] A3_i;
-input logic [1:0] ALUControl_i;
+input logic [1:0] ALUControl_i,BranchSelect_i;
 
 //
 // logic [N-1:0] RD1, RD2, Extend;
@@ -17,9 +17,9 @@ input logic [1:0] ALUControl_i;
 
 
 output logic [N-1:0] RD1_o, RD2_o, Extend_o;
-output logic RF_WE_o, BranchSelect_o, ALUOpBSelect_o,SetFlags_o, MemWE_o,WBSelect_o;
+output logic RF_WE_o, ALUOpBSelect_o,SetFlags_o, MemWE_o,WBSelect_o;
 output logic [3:0] A3_o;
-output logic [1:0] ALUControl_o;
+output logic [1:0] ALUControl_o,BranchSelect_o;
 
 
 	always @(posedge CLK) 

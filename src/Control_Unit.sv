@@ -3,7 +3,7 @@ module Control_Unit(input 	logic[3:0] OpCode,
 										   SetFlags, MemWE, WBSelect,
 						  output logic[1:0] ExtendSelect, ALUControl,BranchSelect);
 	
-	logic [9:0] OUT;
+	logic [10:0] OUT;
 	
 	always_comb begin
 		casex(OpCode)     //  9876543210
