@@ -7,13 +7,19 @@ output logic data_mem_WE_o;
 
 parameter N=32;
 
-logic RST_pipe_if_id,RST_pipe_id_ex;
+logic RST_pipe_if_id,RST_pipe_id_ex,RST_pipe_ex_mem,RST_pipe_mem_wb;
+
+
 logic zero=0;
 logic clear_pipes_o;
 
-
+assign RST_pipe_if_id = RST;
+assign RST_pipe_id_ex = RST||clear_pipes_o;
+assign RST_pipe_ex_mem= RST;
+assign RST_pipe_mem_wb= RST;
 //FETCH
-logic RST_pc, WE_pc;
+logic RST_pc;
+logic WE_pc=1;
 logic [31:0] instruction_if;
 logic [31:0] pc_i,pc_o;
 logic [31:0] PC_1,PC_label;
@@ -107,6 +113,7 @@ PC_controller pc_controller(
 
 assign instruction_if = inst_mem_data_i;
 assign inst_mem_address_o = pc_o;
+assign RST_pc= RST;
 
 
 //############################# DECODE ####################################
@@ -134,15 +141,15 @@ Extend extend(
 
 RegisterFile #(.N(32)) registerFile (
 									.clk(CLK), 
-									.rst(), 
+									.rst(RST), 
 									.WE3(RF_WE_wb),
 									.A1(A1), 
 									.A2(A2), 
 									.A3(A3_wb),
 							      .WD3(wb_data_wb), 
 									.R15(),
-									.RD1(RD1_if), 
-									.RD2(RD2_if)
+									.RD1(RD1_id), 
+									.RD2(RD2_id)
 									);	
 
  Control_Unit  control_Unit(
@@ -150,7 +157,7 @@ RegisterFile #(.N(32)) registerFile (
 									.BranchSelect(BranchSelect_id), 
 									.RegFileWE(RF_WE_id), 
 									.ALUOpBSelect(ALUOpBSelect_id),
-									.SetFlags(SETFlags_id), 
+									.SetFlags(SetFlags_id), 
 									.MemWE(MemWE_id), 
 									.WBSelect(WBSelect_id),
 									.ExtendSelect(ExtendSelect), 
@@ -161,8 +168,8 @@ RegisterFile #(.N(32)) registerFile (
 Pipe_ID_EX  #(.N(N)) pipe_ID_EX(
 									.CLK(CLK), 
 									.RST(RST_pipe_id_ex), 
-									.RD1_i(RD1_if), 
-									.RD2_i(RD2_if), 
+									.RD1_i(RD1_id), 
+									.RD2_i(RD2_id), 
 									.Extend_i(Extend_id), 
 									.RF_WE_i(RF_WE_id), 
 									.A3_i(A3_id), 
@@ -173,8 +180,8 @@ Pipe_ID_EX  #(.N(N)) pipe_ID_EX(
 									.MemWE_i(MemWE_id),
 									.WBSelect_i(WBSelect_id),
 									
-									.RD1_o(RD1_id), 
-									.RD2_o(RD2_id), 
+									.RD1_o(RD1_ex), 
+									.RD2_o(RD2_ex), 
 									.Extend_o(Extend_ex), 
 									.RF_WE_o(RF_WE_ex), 
 									.A3_o(A3_ex),

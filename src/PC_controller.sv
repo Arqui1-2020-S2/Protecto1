@@ -15,7 +15,7 @@ output logic pc_select_o,clear_pipes_o;
 logic zero, negative;
 assign zero = ALU_flags_i[1];
 assign negative = ALU_flags_i[0];
-assign pc_select_o = ((branchselect_id_i==2'b01) || (branchselect_id_i==2'b10 && zero)  ||  (branchselect_id_i==2'b11 && negative) )? (1):(0);
+assign pc_select_o = ((branchselect_id_i===2'b01) || (branchselect_id_i===2'b10 && zero)  ||  (branchselect_id_i===2'b11 && negative) )? (1):(0);
 assign clear_pipes_o = pc_select_o;
 
 

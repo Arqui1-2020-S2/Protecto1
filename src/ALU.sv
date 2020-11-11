@@ -17,12 +17,15 @@ Left_Shift      #(N) lshift(A, B, LeftShift);
 Mux_4 #(N) muxcontrol(ALUControl, Addition, Subtraction, 32'b0, LeftShift, ALUResult);
 
 // Determinacion de las banderas
-assign Neg = ALUResult[N-1]; // Bandera negativo
-always_comb begin	
-	// Bandera Zero
-	if (ALUResult === 0) Zero <= 1;
-	else Zero <= 0;
-end
+assign Neg = (ALUResult[N-1] === 1'b1)? 1:0; // Bandera negativo
+//always_comb begin	
+//	// Bandera Zero
+//	if (ALUResult === 0) Zero <= 1;
+//	else Zero <= 0;
+//end
+
+assign Zero= (ALUResult===0)? 1:0;
+
 
 assign ALUFlags = {Zero, Neg};
 					 
