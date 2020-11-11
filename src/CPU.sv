@@ -63,7 +63,7 @@ logic SetFlags_ex;
 logic MemWE_ex;
 logic WBSelect_ex;
 
-
+logic [31:0] AluResult_ex;
 
 
 
