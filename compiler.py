@@ -62,6 +62,11 @@ Funcion encargada de compilar el archivo ingresado
 filename: string con la ruta del archivo
 """
 def compile(filename):
+    labels = {}       # Diccionario donde se almacenan los labels
+    program = []      # Lista donde se guardan todas las instrucciones codificadas
+    lineCodeCount = 0 # Contador de lineas de instruccion
+    branch_instr = [] # Lista que almacena las instrucciones de salto 
+
     # Apertura del archivo en modo lectura
     fileObject = open(filename, "r")
 
