@@ -81,7 +81,7 @@ def compile(filename):
     analyzeBranch()
 
     # Escritura del codigo compilado en un archivo
-    writeCode()
+    writeCodeMif()
 
 
 """
@@ -308,3 +308,31 @@ def writeCode():
     file = open("instructions.txt", "w")
     for i in range(0, len(program)):
         file.write(program[i] + "\n")
+
+
+header = """DEPTH = 4096; -- The size of memory in words
+WIDTH = 32; -- The size of data in bits 
+ADDRESS_RADIX = DEC; -- The radix for address values 
+DATA_RADIX = BIN; -- The radix for data values 
+CONTENT -- start of (address : data pairs) 
+BEGIN"""
+
+
+"""
+Escribe el codigo compilado en un archivo de texto
+"""
+def writeCodeMif():
+    file = open("instructions.mif", "w")
+    header = """DEPTH = 4096; -- The size of memory in words
+    WIDTH = 32; -- The size of data in bits 
+    ADDRESS_RADIX = DEC; -- The radix for address values 
+    DATA_RADIX = BIN; -- The radix for data values 
+    CONTENT -- start of (address : data pairs) 
+    BEGIN"""
+    file.write(header + "\n")
+    for i in range(0, len(program)):
+        file.write(str(i)+" : "+program[i] + ";\n")
+    file.write("END;" + "\n")
+    
+
+
