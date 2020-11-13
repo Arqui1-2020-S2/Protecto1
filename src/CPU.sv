@@ -56,7 +56,7 @@ logic [1:0]  ALU_flags_ex;
 
 logic RF_WE_ex;
 logic [3:0] A3_ex;
-logic BranchSelect_ex;
+logic [1:0] BranchSelect_ex;
 logic ALUOpBSelect_ex;
 logic[1:0] ALUControl_ex;
 logic SetFlags_ex;
