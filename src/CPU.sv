@@ -193,7 +193,7 @@ Pipe_ID_EX  #(.N(N)) pipe_ID_EX(
 									.WBSelect_o(WBSelect_ex)
 									);
 
-assign ALUOpB = (ALUOpBSelect_ex)? (Extend_ex):(RD1_id);
+assign ALUOpB = (ALUOpBSelect_ex)? (Extend_ex):(RD2_id);
 
 ALU #(N) alu (
 									.A(RD1_id),

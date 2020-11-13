@@ -19,7 +19,7 @@ CPU cpu (
 							.inst_mem_address_o(inst_mem_address), 
 							.data_mem_out_data_i(data_mem_out_data), 
 							.data_mem_address_o(data_mem_address),
-							.data_mem_in_data_o(data_mem_in_data) , 
+							.data_mem_in_data_o(data_mem_in_data), 
 							.data_mem_WE_o(data_mem_WE));
 
 
