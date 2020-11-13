@@ -122,7 +122,7 @@ assign OpCode = instruction_id[31:28];
 assign A1 = instruction_id[27:24];
 assign A2 = instruction_id[23:20];
 assign A3_id = instruction_id[19:16];
-assign imm = instruction_id[15:0];
+assign imm = instruction_id[19:0];
 
 
 Pipe_IF_ID #(.N(N))  pipe_IF_ID (
