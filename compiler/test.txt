@@ -1,0 +1,229 @@
+SUMI    R1 R15 4
+SUMI    R2 R15 3
+SUMI    R3 R15 5
+SUMI    R4 R15 2000
+
+SUMI    R5 R4 1
+SUMI    R6 R4 2
+SUMI    R7 R4 3
+SUMI    R8 R4 4
+SUMI    R9 R4 5
+
+ALM     R4 R1
+ALM     R5 R1
+ALM     R6 R1
+ALM     R7 R1
+ALM     R8 R1
+
+SUMI    R4 R9 1
+SUMI    R5 R9 2
+SUMI    R6 R9 3
+SUMI    R7 R9 4
+SUMI    R8 R9 5
+
+ALM     R9 R2
+ALM     R4 R1
+ALM     R5 R3
+ALM     R6 R1
+ALM     R7 R2
+
+SUMI    R4 R8 1
+SUMI    R5 R8 2
+SUMI    R6 R8 3
+SUMI    R7 R8 4
+SUMI    R9 R8 5
+
+ALM     R8 R2
+ALM     R4 R3
+ALM     R5 R3
+ALM     R6 R3
+ALM     R7 R2
+
+SUMI    R4 R9 1
+SUMI    R5 R9 2
+SUMI    R6 R9 3
+SUMI    R7 R9 4
+SUMI    R8 R9 5
+
+ALM     R9 R2
+ALM     R4 R1
+ALM     R5 R3
+ALM     R6 R1
+ALM     R7 R2
+
+SUMI    R4 R8 1
+SUMI    R5 R8 2
+SUMI    R6 R8 3
+SUMI    R7 R8 4
+
+ALM     R8 R1
+ALM     R4 R1
+ALM     R5 R1
+ALM     R6 R1
+ALM     R7 R1
+
+SUMI    R13 R0 2000
+SUMI    R14 R0 2025
+NOP
+NOP
+
+tabla_1
+CRG     R1 R13
+SUMI    R13 R13 1
+NOP
+NOP
+CRG     R2 R1
+NOP
+NOP
+NOP
+SUMI    R2 R2 1
+NOP
+NOP
+NOP
+ALM     R1 R2
+NOP
+NOP
+SMQ     R13 R14 tabla_1
+
+prepare_table_2
+SUMI    R13 R0 0
+SUMI    R14 R0 256
+SUMI    R2 R0 0
+NOP
+
+tabla_2
+CRG     R1 R13
+SUMI    R3 R13 256
+SUMI    R13 R13 1
+NOP
+SUM     R2 R2 R1
+NOP
+NOP
+NOP
+ALM     R3 R2
+SMQ     R13 R14 tabla_2
+
+prepare_table_3
+SR      R2 R2 3
+SUMI    R14 R0 512
+
+table_3
+SUMI    R6 R13 256
+SUMI    R3 R13 257
+SUMI    R4 R13 258
+SUMI    R5 R13 259
+
+ALM     R6 R2
+SUMI    R13 R13 4
+
+ALM     R3 R2
+ALM     R4 R2
+ALM     R5 R2
+
+SMQ     R13 R14 table_3
+
+prepare_table4
+SUMI    R13 R0 512
+SUMI    R14 R0 768
+SUMI    R1 R0 0
+NOP
+NOP
+NOP
+
+BORRAR_ESTO
+SUMI    R11 R0 515
+SUMI    R12 R0 4
+NOP
+NOP
+NOP
+ALM     R11 R12
+
+table_4
+CRG     R3 R13
+SUMI    R4 R13 256
+NOP
+NOP
+SUM     R1 R1 R3
+NOP
+NOP
+NOP
+ALM     R4 R1
+SUMI    R13 R13 1
+NOP
+NOP
+NOP
+SMQ     R13 R14 table_4
+
+prepare_table_5
+SUMI    R12 R0 512
+SUMI    R13 R0 768
+SUMI    R5 R0 768
+SUMI    R14 R0 1024
+SUMI    R11 R0 768
+NOP
+NOP
+
+table_5
+RES     R4 R13 R12
+SUMI    R1 R5 1
+NOP
+NOP
+CRG     R4 R4
+CRG     R2 R5
+CRG     R3 R1
+NOP
+NOP
+RES     R2 R4 R2
+RES     R3 R3 R4
+NOP
+NOP
+NOP
+SMQ     R2 R3 set_value
+SUMI    R5 R5 1
+NOP
+NOP
+NOP
+SAL     table_5
+
+
+set_value
+SUMI    R2 R13 256
+RES     R7 R5 R11
+SUMI    R5 R0 768
+NOP
+NOP
+NOP
+ALM     R2 R7
+SUMI    R13 R13 1
+NOP
+NOP
+NOP
+SMQ     R13 R14 table_5
+
+prepare_remap
+SUMI R1 R0 2000
+SUMI R13 R0 4000
+SUMI R14 R0 2025
+NOP
+NOP
+NOP
+
+
+remap
+CRG R2 R1
+SUMI R3 R13 0
+SUMI R1 R1 1
+SUMI R2 R2 1024
+SUMI R13 R13 1
+NOP
+NOP
+NOP
+CRG R2 R2
+NOP
+NOP
+NOP
+ALM R3 R2
+NOP
+SMQ R1 R14 remap
+
+NOP
