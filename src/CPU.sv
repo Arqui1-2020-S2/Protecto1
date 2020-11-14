@@ -52,8 +52,8 @@ logic [19:0]   imm;
 logic [31:0] ALUOpB;
 logic [31:0] Extend_ex;
 logic [1:0]  ALU_flags_ex;
-
-
+logic [31:0] RD1_ex;
+logic [31:0] RD2_ex;
 logic RF_WE_ex;
 logic [3:0] A3_ex;
 logic [1:0] BranchSelect_ex;
@@ -69,7 +69,7 @@ logic [31:0] AluResult_ex;
 
 //MEM
 
-logic [31:0] RD2_ex, RD2_mem;
+logic [31:0] RD2_mem;
 logic RF_WE_mem;
 logic MemWE_mem;
 logic WBSelect_mem;
