@@ -6,8 +6,8 @@ module Control_Unit(input 	logic[3:0] OpCode,
 	logic [10:0] OUT;
 	
 	always_comb begin
-		casex(OpCode)     //  9876543210
-			4'b0000: OUT = 11'b0;			//NOP
+		casex(OpCode)     //  09876543210
+			4'b0000: OUT = 11'b0;          //NOP
 			4'b0001: OUT = 11'b01010001100;//Branch
 			4'b0010: OUT = 11'b10010001100;//Branch equal
 			4'b0011: OUT = 11'b11010001100;//Branch less than
@@ -18,8 +18,8 @@ module Control_Unit(input 	logic[3:0] OpCode,
 			4'b1000: OUT = 11'b00100000000;//Add
 			4'b1001: OUT = 11'b00101100000;//Add Imm
 			4'b1010: OUT = 11'b00100001000;//Substract
-			4'b1011: OUT = 11'b00100010000;//Shift Right
-			4'b1100: OUT = 11'b00100011000;//Shift Left
+			4'b1011: OUT = 11'b00100110000;//Shift Right
+			4'b1100: OUT = 11'b00100111000;//Shift Left
 			default: OUT = 11'b0;
 		endcase
 	end
