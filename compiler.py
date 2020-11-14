@@ -81,8 +81,8 @@ def compile(filename):
     analyzeBranch()
 
     # Escritura del codigo compilado en un archivo
-    #writeCodeMif()
-    writeCode()
+    writeCodeMif()
+    #writeCode()
 
 
 """
@@ -334,5 +334,3 @@ def writeCodeMif():
     for i in range(0, len(program)):
         file.write(str(i)+" : "+program[i] + ";\n")
     file.write("END;" + "\n")
-    
-    
