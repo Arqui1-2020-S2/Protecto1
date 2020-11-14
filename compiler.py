@@ -10,7 +10,7 @@ ALMB = "ALMB"
 SUM  = "SUM"
 SUMI = "SUMI"
 RES  = "RES"
-DIV  = "DIV"
+SR   = "SR"
 SL   = "SL"
 CD   = "CD"
 
@@ -27,7 +27,7 @@ instructions = {
     SUM  : "1000",
     SUMI : "1001",
     RES  : "1010",
-    DIV  : "1011",
+    SR   : "1011",
     SL   : "1100",
     CD   : "1111"
 }
@@ -82,6 +82,7 @@ def compile(filename):
 
     # Escritura del codigo compilado en un archivo
     writeCodeMif()
+    #writeCode()
 
 
 """
@@ -217,7 +218,7 @@ def codeDataProcessInstruction(instruction):
             return codeGeneralInstruction(opname, firstOperand, secondOperand, regDestiny, "0")
 
         else:
-            if opname not in (SUMI, SL):
+            if opname not in (SUMI, SL, SR):
                 raise Exception("Instruccion '" + opname + "' no soporta inmediatos")
             # Operacion utilizando un inmediato
             return codeGeneralInstruction(opname, firstOperand, "R0", regDestiny, secondOperand)
@@ -253,7 +254,7 @@ def analyzeLine(line):
                 program.append(instr)
             
             # Codificacion de instrucciones de procesamiento de datos
-            elif opname in (SUM, SUMI, RES, DIV, SL):
+            elif opname in (SUM, SUMI, RES, SR, SL):
                 instr = codeDataProcessInstruction(content)
                 program.append(instr)
             
@@ -319,7 +320,7 @@ BEGIN"""
 
 
 """
-Escribe el codigo compilado en un archivo de texto
+Escribe el codigo compilado en un archivo .mif
 """
 def writeCodeMif():
     file = open("instructions.mif", "w")
@@ -333,6 +334,3 @@ def writeCodeMif():
     for i in range(0, len(program)):
         file.write(str(i)+" : "+program[i] + ";\n")
     file.write("END;" + "\n")
-    
-
-
