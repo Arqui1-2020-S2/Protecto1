@@ -191,7 +191,10 @@ def codeMemoryInstruccion(instruction):
         regSrc = instruction[2]      # Registro con el operando
         regDestiny = instruction[1]  # Registro de destino
         immediate = "0"              # Inmediato es cero, esta instruccion no lo utiliza
-        return codeGeneralInstruction(opname, regDestiny, regSrc, "R0", immediate)
+        if opname in (ALM, ALMB):
+            return codeGeneralInstruction(opname, regDestiny, regSrc, "R0", immediate)
+        else:
+            return codeGeneralInstruction(opname, regSrc, "R0", regDestiny, immediate)
 
 """
 Funcion para codificar una instruccion de procesamiento de datos

@@ -217,8 +217,12 @@ def simulate():
         global cycles
         cycles += 1
 
-        # Instrucciones de memoria
-        if opcode in (opCRG, opCRGB, opALM, opALMB):
+        # Instrucciones de cargar memoria
+        if opcode in (opCRG, opCRGB):
+            instructions[opcode](reg_des, reg_src)
+
+        # Instrucciones de almacenar en memoria
+        elif opcode in (opALM, opALMB):
             instructions[opcode](reg_src, reg)
         
         # Instrucciones de procesamiento de datos
