@@ -187,7 +187,7 @@ def codeMemoryInstruccion(instruction):
         regSrc = instruction[2]      # Registro con el operando
         regDestiny = instruction[1]  # Registro de destino
         immediate = "0"              # Inmediato es cero, esta instruccion no lo utiliza
-        return codeGeneralInstruction(opname, regSrc, "R0", regDestiny, immediate)
+        return codeGeneralInstruction(opname, regDestiny, regSrc, "R0", immediate)
 
 """
 Funcion para codificar una instruccion de procesamiento de datos
@@ -329,5 +329,3 @@ def writeCodeMif():
     for i in range(0, len(program)):
         file.write(str(i)+" : "+program[i] + ";\n")
     file.write("END;" + "\n")
-
-compile("test.txt")
