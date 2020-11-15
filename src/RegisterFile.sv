@@ -29,7 +29,7 @@ Register #(N) REG11(clk,rst,reg_en[11],WD3,r11_out);
 Register #(N) REG12(clk,rst,reg_en[12],WD3,r12_out);
 Register #(N) REG13(clk,rst,reg_en[13],WD3,r13_out);
 Register #(N) REG14(clk,rst,reg_en[14],WD3,r14_out);
-Register #(N) REG15(clk,rst,1'b1,R15,r15_out);
+Register #(N) REG15(clk,rst,1'b0,R15,r15_out);
 
 // Selector de la salida correspondiente
 Mux_16 #(N) MUX_OUT_RD1(A1, r00_out, r01_out, r02_out, r03_out, r04_out,

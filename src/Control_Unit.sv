@@ -1,10 +1,8 @@
 module Control_Unit(input 	logic[3:0] OpCode,
-<<<<<<< HEAD
-						  output logic RegFileWE, ALUOpBSelect,
-=======
-						  output logic BranchSelect, A1Select, RegFileWE, ALUOpBSelect,
->>>>>>> main
-										   SetFlags, MemWE, WBSelect,
+						  output logic RegFileWE, ALUOpBSelect, SetFlags, MemWE, WBSelect,
+//						  output logic BranchSelect, A1Select, RegFileWE, ALUOpBSelect,
+
+//										  
 						  output logic[1:0] ExtendSelect, ALUControl,BranchSelect);
 	
 	logic [10:0] OUT;

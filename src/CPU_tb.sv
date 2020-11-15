@@ -12,6 +12,8 @@ module CPU_tb();
  logic CLK_ng;
  assign CLK_ng=!CLK;
  logic byte_mode=0;
+ 
+ int counter=0;
 
 CPU cpu (	
 							.CLK(CLK),.RST(RST), 
@@ -41,6 +43,33 @@ Ram  #(.G(10),.mif_filename("mem_data/in_ram.txt")) dataMem (
 
 always #5 CLK=!CLK;
 
+
+
+
+
+always @(posedge CLK) counter = counter+1;
+
+
+
+always @(posedge CLK)
+begin
+#1;
+if(data_mem_WE)
+begin
+$display("data_mem_address: %d, data_mem_in_data: %d", 
+              data_mem_address, data_mem_in_data);
+end
+if(data_mem_WE)
+begin
+$display("data_mem_address: %d, data_mem_in_data: %d", 
+              data_mem_address, data_mem_in_data);
+end
+
+
+
+end
+
+
 initial
 begin
 CLK=0;
@@ -50,11 +79,15 @@ wait(CLK == 1);
 wait(CLK == 0);
 RST=0;
 
-#1000 $finish;
+wait(inst_mem_address==187);
+$finish;
 
 
 
 end
+
+
+
 
 
 endmodule

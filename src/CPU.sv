@@ -193,10 +193,10 @@ Pipe_ID_EX  #(.N(N)) pipe_ID_EX(
 									.WBSelect_o(WBSelect_ex)
 									);
 
-assign ALUOpB = (ALUOpBSelect_ex)? (Extend_ex):(RD2_id);
+assign ALUOpB = (ALUOpBSelect_ex)? (Extend_ex):(RD2_ex);
 
 ALU #(N) alu (
-									.A(RD1_id),
+									.A(RD1_ex),
 									.B(ALUOpB),
 									.ALUControl(ALUControl_ex),
 									.ALUResult(AluResult_ex),
@@ -249,7 +249,7 @@ Pipe_MEM_WB pipe_MEM_WB  (
 									.A3_o(A3_wb)
 									);
 
- assign wb_data_wb = WBSelect_wb ? AluResult_wb : ReadData_wb;
+ assign wb_data_wb = WBSelect_wb ? ReadData_wb:AluResult_wb;
 
 
 
