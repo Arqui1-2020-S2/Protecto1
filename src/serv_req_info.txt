@@ -1,0 +1,32 @@
+<internal_error>
+<sub_system>ERR</sub_system>
+<callstack>
+	0x7f1d26857171: ccl_err + 0x8171 (_ZN15ERR_STACKWALKER15get_stack_traceEPPKviiPv + 0xb1)
+	0x7f1d2685a015: ccl_err + 0xb015 (_Z14err_terminatorv + 0x4b)
+	0x7f1d222ab796: stdc++.so.6 + 0x63796 (_ZN10__cxxabiv111__terminateEPFvvE + 0x6)
+	0x7f1d222aa859: stdc++.so.6 + 0x62859
+	0x7f1d222ab40a: stdc++.so.6 + 0x6340a (__gxx_personality_v0 + 0x52a)
+	0x7f1d21cedc03: gcc_s.so.1 + 0xfc03 (_Unwind_RaiseException_Phase2 + 0x43)
+	0x7f1d21cee137: gcc_s.so.1 + 0x10137 (_Unwind_Resume + 0x57)
+	0x7f1d13fc2f76: cbx_mgl + 0x58f76 (_ZN13MGL_GENERATOR6removeEP11MGL_ELEMENTRKSsb + 0x350)
+	0x7f1d13fc3096: cbx_mgl + 0x59096 (_ZN11MGL_ELEMENTD1Ev + 0x30)
+	0x7f1d13fc47f4: cbx_mgl + 0x5a7f4 (_ZN20MGL_PARAMETER_STRINGD2Ev + 0xc4)
+	0x7f1d11b639c7: cbx_altsyncram + 0x489c7 (_ZN14CBX_ALTSYNCRAMD1Ev + 0x401)
+	0x7f1d11b642b7: cbx_altsyncram + 0x492b7 (_ZN14CBX_ALTSYNCRAMD0Ev + 0x9)
+	0x7f1d11b361b8: cbx_altsyncram + 0x1b1b8 (cbx_destroy_generator + 0xf)
+	0x7f1d5b7c6e2d: synth_cbxi + 0x7e2d (_ZN18CBXI_DLL_INTERFACE19disconnect_from_dllEv + 0x10f)
+	0x7f1d5b7cd1dd: synth_cbxi + 0xe1dd (_ZN18CBXI_DLL_INTERFACED1Ev + 0xd)
+	0x7f1d21b553ae: c.so.6 + 0x403ae (__cxa_finalize + 0xce)
+	0x7f1d5b7c67e3: synth_cbxi + 0x77e3
+	0x7f1d61dd968b: ld-linux-x86-64.so.2 + 0x1168b (_dl_fini + 0x1cb)
+	0x7f1d21b54db7: c.so.6 + 0x3fdb7 (__run_exit_handlers + 0xf7)
+	0x7f1d21b54f5e: c.so.6 + 0x3ff5e
+	0x7f1d47b83e8a: ccl_ipc + 0x3e8a (ipc_signal_handler + 0xe7)
+	0x7f1d21b526a0: c.so.6 + 0x3d6a0
+	0x7f1d22306c90: stdc++.so.6 + 0xbec90 (_ZNSs15_M_replace_safeEmmPKcm + 0)
+</callstack>
+<error>*** Fatal Error: Unhandled Exception</error>
+<date>Mon Nov  9 02:17:54 2020
+</date>
+<version>Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition</version>
+</internal_error>

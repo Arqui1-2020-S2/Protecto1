@@ -1,2 +1,9 @@
-
+src/*.qpf
+src/*.qsf
+src/db
 *.bak
+*.rpt
+src/simulation/
+src/output_files/
+src/incremental_db/
+src/greybox_tmp/
