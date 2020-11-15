@@ -289,7 +289,7 @@ def analyzeBranch():
             raise Exception("Label '" + label + "' no declarado")
         
         labelLine = labels[label] # Obtener linea donde apunta el label
-        branchDirection = labelLine - (lineNum+1) # Obtener cantidad de saltos 
+        branchDirection = labelLine - (lineNum+2) # Obtener cantidad de saltos 
         
         if opname == SAL:
             # Codificacion de branch no condicional
