@@ -82,8 +82,6 @@ def compile(filename):
 
     # Escritura del codigo compilado en un archivo
     writeCodeMif()
-    #writeCode()
-
 
 """
 Funcion para agregar un nuevo label en el diccionario, 
@@ -334,3 +332,4 @@ def writeCodeMif():
     for i in range(0, len(program)):
         file.write(str(i)+" : "+program[i] + ";\n")
     file.write("END;" + "\n")
+
