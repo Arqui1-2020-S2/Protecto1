@@ -59,11 +59,11 @@ begin
 $display("data_mem_address: %d, data_mem_in_data: %d", 
               data_mem_address, data_mem_in_data);
 end
-if(data_mem_WE)
-begin
-$display("data_mem_address: %d, data_mem_in_data: %d", 
-              data_mem_address, data_mem_in_data);
-end
+//if(data_mem_WE)
+//begin
+//$display("data_mem_address: %d, data_mem_in_data: %d", 
+//              data_mem_address, data_mem_in_data);
+//end
 
 
 

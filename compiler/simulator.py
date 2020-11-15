@@ -190,6 +190,8 @@ opSR   = "1011"
 opSL   = "1100"
 opCD   = "1111"
 
+cycles = 0
+
 def simulate():
     readInstruction("instructions.txt")
     lenm = len(instr_mem)-1
@@ -212,9 +214,12 @@ def simulate():
         # Load Address
         addr = instr[8:32]
 
+        global cycles
+        cycles += 1
+
         # Instrucciones de memoria
         if opcode in (opCRG, opCRGB, opALM, opALMB):
-            instructions[opcode](reg_des, reg_src)
+            instructions[opcode](reg_src, reg)
         
         # Instrucciones de procesamiento de datos
         elif opcode in (opSUM, opRES):
@@ -239,3 +244,5 @@ def simulate():
         # Instruccion NOP
         else:
             instructions[opcode]()
+    print("Ciclos totales")
+    print(cycles)

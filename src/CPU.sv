@@ -17,6 +17,8 @@ assign RST_pipe_if_id = RST;
 assign RST_pipe_id_ex = RST||clear_pipes_o;
 assign RST_pipe_ex_mem= RST;
 assign RST_pipe_mem_wb= RST;
+
+
 //FETCH
 logic RST_pc;
 logic WE_pc=1;
