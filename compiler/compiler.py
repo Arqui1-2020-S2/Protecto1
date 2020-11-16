@@ -62,11 +62,6 @@ Funcion encargada de compilar el archivo ingresado
 filename: string con la ruta del archivo
 """
 def compile(filename):
-    labels = {}       # Diccionario donde se almacenan los labels
-    program = []      # Lista donde se guardan todas las instrucciones codificadas
-    lineCodeCount = 0 # Contador de lineas de instruccion
-    branch_instr = [] # Lista que almacena las instrucciones de salto 
-
     # Apertura del archivo en modo lectura
     fileObject = open(filename, "r")
 
@@ -289,7 +284,7 @@ def analyzeBranch():
             raise Exception("Label '" + label + "' no declarado")
         
         labelLine = labels[label] # Obtener linea donde apunta el label
-        branchDirection = labelLine - (lineNum+1) # Obtener cantidad de saltos 
+        branchDirection = labelLine - (lineNum+2) # Obtener cantidad de saltos 
         
         if opname == SAL:
             # Codificacion de branch no condicional

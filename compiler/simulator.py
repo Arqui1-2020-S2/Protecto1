@@ -11,12 +11,12 @@ instr_mem = []
 
 # PC y PC+1
 pc = 0
-pcPlus1 = 0
+pcPlus1 = 2
 
 def updatePC():
     global pc, pcPlus1
     pc += 1
-    pcPlus1 = pc + 1
+    pcPlus1 = pc + 2
 
 def NOP():
     updatePC() # Actualizar PC
@@ -27,7 +27,7 @@ def bin2int(number):
 def SAL(label):
     global pc, pcPlus1
     pc = pcPlus1 + bin2int(label)
-    pcPlus1 = pc + 1
+    pcPlus1 = pc + 2
 
 def SEQ(reg1, reg2, label):
     global pc, pcPlus1
@@ -39,7 +39,7 @@ def SEQ(reg1, reg2, label):
     # Si el valor de los registros es igual, hace el salto
     if(registers[reg1] == registers[reg2]): 
         pc = pcPlus1 + bin2int(label)
-        pcPlus1 = pc + 1
+        pcPlus1 = pc + 2
     else:
         updatePC()
 
@@ -53,7 +53,7 @@ def SMQ(reg1, reg2, label):
     # Si el valor de reg1 < reg2, hace el salto
     if(registers[reg1] < registers[reg2]): 
         pc = pcPlus1 + bin2int(label)
-        pcPlus1 = pc + 1
+        pcPlus1 = pc + 2
     else:
         updatePC()
 
@@ -193,9 +193,10 @@ opCD   = "1111"
 cycles = 0
 
 def simulate():
+    global pc
     readInstruction("instructions.txt")
     lenm = len(instr_mem)-1
-    while pc != lenm:
+    while pc < lenm:
         instr = instr_mem[pc]  # Se obtiene la instruccion
 
         global registers
