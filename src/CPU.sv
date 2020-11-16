@@ -52,24 +52,24 @@ logic [19:0]   imm;
 logic [31:0] ALUOpB;
 logic [31:0] Extend_ex;
 logic [1:0]  ALU_flags_ex;
-
-
+logic [31:0] RD1_ex;
+logic [31:0] RD2_ex;
 logic RF_WE_ex;
 logic [3:0] A3_ex;
-logic BranchSelect_ex;
+logic [1:0] BranchSelect_ex;
 logic ALUOpBSelect_ex;
 logic[1:0] ALUControl_ex;
 logic SetFlags_ex;
 logic MemWE_ex;
 logic WBSelect_ex;
 
-
+logic [31:0] AluResult_ex;
 
 
 
 //MEM
 
-logic [31:0] RD2_ex, RD2_mem;
+logic [31:0] RD2_mem;
 logic RF_WE_mem;
 logic MemWE_mem;
 logic WBSelect_mem;
@@ -122,7 +122,7 @@ assign OpCode = instruction_id[31:28];
 assign A1 = instruction_id[27:24];
 assign A2 = instruction_id[23:20];
 assign A3_id = instruction_id[19:16];
-assign imm = instruction_id[15:0];
+assign imm = instruction_id[19:0];
 
 
 Pipe_IF_ID #(.N(N))  pipe_IF_ID (
@@ -193,7 +193,7 @@ Pipe_ID_EX  #(.N(N)) pipe_ID_EX(
 									.WBSelect_o(WBSelect_ex)
 									);
 
-assign ALUOpB = (ALUOpBSelect_ex)? (Extend_ex):(RD1_id);
+assign ALUOpB = (ALUOpBSelect_ex)? (Extend_ex):(RD2_id);
 
 ALU #(N) alu (
 									.A(RD1_id),
