@@ -16,5 +16,9 @@ Toma una imagen y guarda tres archivos en .mif en la ruta output con la informac
 ``` bash 
 python3  imageUtils.py -s input
 ```
-Toma archivos de salida y unifica los arreglos de los datos de salida para para poder mostrar una imagen de resultado.
+Toma archivos de salida generados por el procesador y unifica los arreglos de los datos de salida para para poder mostrar una imagen de resultado.
+
+Formato de archivo:
+
+index : value;
 
