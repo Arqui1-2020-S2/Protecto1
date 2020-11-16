@@ -3,21 +3,13 @@ NOP
 NOP
 NOP
 NOP
-NOP
-NOP
-NOP
-NOP
-NOP
-NOP
-NOP
-NOP
-NOP
-NOP
-
 SUMI    R1 R0 4
 SUMI    R2 R0 3
 SUMI    R3 R0 5
 SUMI    R4 R0 2000
+NOP
+NOP
+NOP
 
 SUMI    R5 R4 1
 SUMI    R6 R4 2
@@ -30,56 +22,84 @@ ALM     R5 R1
 ALM     R6 R1
 ALM     R7 R1
 ALM     R8 R1
+NOP
+NOP
+NOP
 
 SUMI    R4 R9 1
 SUMI    R5 R9 2
 SUMI    R6 R9 3
 SUMI    R7 R9 4
 SUMI    R8 R9 5
+NOP
+NOP
+NOP
 
 ALM     R9 R2
 ALM     R4 R1
 ALM     R5 R3
 ALM     R6 R1
 ALM     R7 R2
+NOP
+NOP
+NOP
 
 SUMI    R4 R8 1
 SUMI    R5 R8 2
 SUMI    R6 R8 3
 SUMI    R7 R8 4
 SUMI    R9 R8 5
+NOP
+NOP
+NOP
 
 ALM     R8 R2
 ALM     R4 R3
 ALM     R5 R3
 ALM     R6 R3
 ALM     R7 R2
+NOP
+NOP
+NOP
 
 SUMI    R4 R9 1
 SUMI    R5 R9 2
 SUMI    R6 R9 3
 SUMI    R7 R9 4
 SUMI    R8 R9 5
+NOP
+NOP
+NOP
 
 ALM     R9 R2
 ALM     R4 R1
 ALM     R5 R3
 ALM     R6 R1
 ALM     R7 R2
+NOP
+NOP
+NOP
 
 SUMI    R4 R8 1
 SUMI    R5 R8 2
 SUMI    R6 R8 3
 SUMI    R7 R8 4
+NOP
+NOP
+NOP
 
 ALM     R8 R1
 ALM     R4 R1
 ALM     R5 R1
 ALM     R6 R1
 ALM     R7 R1
+NOP
+NOP
+NOP
 
 SUMI    R13 R0 2000
 SUMI    R14 R0 2025
+NOP
 NOP
 NOP
 
@@ -106,6 +126,7 @@ SUMI    R13 R0 0
 SUMI    R14 R0 256
 SUMI    R2 R0 0
 NOP
+NOP
 
 tabla_2
 CRG     R1 R13
@@ -120,6 +141,7 @@ ALM     R3 R2
 SMQ     R13 R14 tabla_2
 
 prepare_table_3
+SUM     R8 R0 R2
 SR      R2 R2 3
 SUMI    R14 R0 512
 
@@ -138,6 +160,18 @@ ALM     R5 R2
 
 SMQ     R13 R14 table_3
 
+SL      R9 R2 3
+NOP
+NOP
+NOP
+SEQ     R8 R9 prepare_table4 
+SUMI    R8 R2 1
+SUMI    R9 R0 512
+NOP
+NOP
+NOP
+ALM     R9 R8
+
 prepare_table4
 SUMI    R13 R0 512
 SUMI    R14 R0 768
@@ -145,14 +179,6 @@ SUMI    R1 R0 0
 NOP
 NOP
 NOP
-
-BORRAR_ESTO
-SUMI    R11 R0 515
-SUMI    R12 R0 4
-NOP
-NOP
-NOP
-ALM     R11 R12
 
 table_4
 CRG     R3 R13
@@ -176,6 +202,7 @@ SUMI    R13 R0 768
 SUMI    R5 R0 768
 SUMI    R14 R0 1024
 SUMI    R11 R0 768
+NOP
 NOP
 NOP
 
@@ -247,6 +274,6 @@ NOP
 NOP
 END
 NOP
+NOP
+NOP
 SAL END
-
-
