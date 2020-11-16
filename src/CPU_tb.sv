@@ -31,16 +31,24 @@ Inst_ROM instROM (
 							.q(inst_mem_data));
 
 
-Ram  #(.G(10),.mif_filename("mem_data/in_ram.txt")) dataMem (	
-							.address_i(data_mem_address[9:0]), 
-							.CLK(CLK), 
-							.RST(RST), 
-							.data_i(data_mem_in_data), 
-							.EN(data_mem_WE), 
-							.data_o(data_mem_out_data), 
-							.ByteMode_i(byte_mode));
+//Ram  #(.G(12),.mif_filename("mem_data/in_ram.txt")) dataMem (	
+//							.address_i(data_mem_address[9:0]), 
+//							.CLK(CLK), 
+//							.RST(RST), 
+//							.data_i(data_mem_in_data), 
+//							.EN(data_mem_WE), 
+//							.data_o(data_mem_out_data), 
+//							.ByteMode_i(byte_mode));
 
-
+ RAM_test ram(
+	.address(data_mem_address[11:0]),
+	.clock(CLK_ng),
+	.data(data_mem_in_data),
+	.wren(data_mem_WE),
+	.q(data_mem_out_data));
+	
+	
+	
 always #5 CLK=!CLK;
 
 
@@ -56,8 +64,8 @@ begin
 #1;
 if(data_mem_WE)
 begin
-$display("data_mem_address: %d, data_mem_in_data: %d", 
-              data_mem_address, data_mem_in_data);
+$display("PC:inst_mem_address: %d, data_mem_address: %d, data_mem_in_data: %d", 
+              inst_mem_address,data_mem_address, data_mem_in_data);
 end
 //if(data_mem_WE)
 //begin
@@ -79,8 +87,8 @@ wait(CLK == 1);
 wait(CLK == 0);
 RST=0;
 
-wait(inst_mem_address==187);
-$finish;
+//wait(inst_mem_address==187);
+//$finish;
 
 
 
