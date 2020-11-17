@@ -55,12 +55,21 @@ assign wren[7] = (sel==3'b111 && address_i[15:0]==0)? wren_i:0;
 	.wren(wren[2]),
 	.q(data_image[1]));
 	
- RAM_input_2 ram_in2(
-	.address(address_i[15:0]),
+// RAM_input_2 ram_in2(
+//	.address(address_i[15:0]),
+//	.clock(CLK_ng),
+//	.data(data_i[7:0]),
+//	.wren(wren[3]),
+//	.q(data_image[2]));
+
+ RAM_input_2_h ram_in2_h(
+	.address(address_i[14:0]),
 	.clock(CLK_ng),
 	.data(data_i[7:0]),
 	.wren(wren[3]),
 	.q(data_image[2]));
+	
+	
 //imagen salida 400*400 8bits
  RAM_input_image ram_out0(
 	.address(address_i[15:0]),
@@ -75,15 +84,24 @@ assign wren[7] = (sel==3'b111 && address_i[15:0]==0)? wren_i:0;
 	.data(data_i[7:0]),
 	.wren(wren[5]),
 	.q(data_image[4]));
+
+// RAM_input_image ram_out2(
+//	.address(address_i[15:0]),
+//	.clock(CLK_ng),
+//	.data(data_i[7:0]),
+//	.wren(wren[6]),
+//	.q(data_image[5]));
 	
- RAM_input_image ram_out2(
-	.address(address_i[15:0]),
+ RAM_half ram_out_h(
+	.address(address_i[14:0]),
 	.clock(CLK_ng),
 	.data(data_i[7:0]),
 	.wren(wren[6]),
 	.q(data_image[5]));
+	
+	
 
- Register #(.N(8)) PC (
+ Register #(.N(8)) LEDS (
 									.CLK(CLK), 
 									.RST(RST), 
 									.EN(wren[7]),

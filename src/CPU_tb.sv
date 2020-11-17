@@ -125,7 +125,9 @@ begin
 			begin
 				$display("Imagen Salida");
 				pos=data_mem_address-32'd262144;
-				$fwrite(f_img_out,"%d : %d\n",pos ,data_mem_in_data  );
+				$fwrite(f_img_out,"%d ",data_mem_in_data);
+//				$fwrite(f_img_out,"%d : %d\n",pos ,data_mem_in_data  );
+
 			end
 			else if(data_mem_address<=32'd4095)
 			begin

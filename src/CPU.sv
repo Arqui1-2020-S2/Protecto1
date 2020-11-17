@@ -13,7 +13,8 @@ logic RST_pipe_if_id,RST_pipe_id_ex,RST_pipe_ex_mem,RST_pipe_mem_wb;
 logic zero=0;
 logic clear_pipes_o;
 
-assign RST_pipe_if_id = RST;
+//assign RST_pipe_if_id = RST;
+assign RST_pipe_if_id = RST||clear_pipes_o;
 assign RST_pipe_id_ex = RST||clear_pipes_o;
 assign RST_pipe_ex_mem= RST;
 assign RST_pipe_mem_wb= RST;
