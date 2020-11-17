@@ -23,10 +23,12 @@ NOP
 NOP
 
 tabla_1
+NOP
 CRG     R1 R13
+NOP
+NOP
+NOP
 SUMI    R13 R13 1
-NOP
-NOP
 CRG     R2 R1
 NOP
 NOP
@@ -41,14 +43,19 @@ NOP
 SMQ     R13 R14 tabla_1
 
 prepare_table_2
+NOP
 SUMI    R13 R0 0
 SUMI    R14 R0 256
 SUMI    R2 R0 0
 NOP
 NOP
+NOP
 
 tabla_2
+NOP
 CRG     R1 R13
+NOP
+NOP
 SUMI    R3 R13 256
 SUMI    R13 R13 1
 NOP
@@ -60,11 +67,13 @@ ALM     R3 R2
 SMQ     R13 R14 tabla_2
 
 prepare_table_3
+NOP
 SUM     R8 R0 R2
 SR      R2 R2 8
 SUMI    R14 R0 512
 
 table_3
+NOP
 SUMI    R6 R13 256
 SUMI    R3 R13 257
 SUMI    R4 R13 258
@@ -76,7 +85,8 @@ SUMI    R13 R13 4
 ALM     R3 R2
 ALM     R4 R2
 ALM     R5 R2
-
+NOP
+NOP
 SMQ     R13 R14 table_3
 
 SL      R9 R2 8
@@ -92,6 +102,7 @@ NOP
 ALM     R9 R8
 
 prepare_table4
+NOP
 SUMI    R13 R0 512
 SUMI    R14 R0 768
 SUMI    R1 R0 0
@@ -100,6 +111,7 @@ NOP
 NOP
 
 table_4
+NOP
 CRG     R3 R13
 SUMI    R4 R13 256
 NOP
@@ -116,53 +128,89 @@ NOP
 SMQ     R13 R14 table_4
 
 prepare_table_5
+NOP
 SUMI    R12 R0 512
 SUMI    R13 R0 768
 SUMI    R5 R0 768
 SUMI    R14 R0 1024
 SUMI    R11 R0 768
+SUMI    R9 R0 1023
 NOP
 NOP
 NOP
 
 table_5
+NOP
 RES     R4 R13 R12
-SUMI    R1 R5 1
+NOP
 NOP
 NOP
 CRG     R4 R4
-CRG     R2 R5
-CRG     R3 R1
-NOP
-NOP
-RES     R2 R4 R2
-RES     R3 R3 R4
+CRG     R1 R5
 NOP
 NOP
 NOP
-SMQ     R2 R3 set_value
+SEQ     R1 R4 set_value
+SMQ     R4 R1 difference
 SUMI    R5 R5 1
+NOP
+NOP
+NOP
+SEQ     R5 R9 set_value
+SAL     table_5 
+
+
+
+set_value
+NOP
+SUMI    R6 R13 256
+RES     R7 R5 R11
+NOP
+NOP
+NOP
+ALM     R6 R7
+SUMI    R13 R13 1
+NOP
+NOP
+NOP
+SEQ     R13 R14 prepare_remap
+SUM     R5 R0 R11
 NOP
 NOP
 NOP
 SAL     table_5
 
 
-set_value
-SUMI    R2 R13 256
-RES     R7 R5 R11
-SUMI    R5 R0 768
+difference
+NOP
+SUMI    R3 R0 1
 NOP
 NOP
 NOP
-ALM     R2 R7
-SUMI    R13 R13 1
+RES     R7 R1 R4 
+SUM     R3 R5 R3 
 NOP
 NOP
 NOP
-SMQ     R13 R14 table_5
+SUM     R10 R0 R3
+CRG     R3 R3
+NOP
+NOP
+NOP
+RES     R8 R3 R4
+NOP
+NOP
+NOP
+SMQ     R7 R8 set_value
+SUM     R5 R0 R10
+NOP
+NOP
+NOP
+SAL     set_value
+
 
 prepare_remap
+NOP
 SUMI    R12 R0 1
 NOP
 NOP
@@ -177,16 +225,18 @@ SL      R14 R14 8
 NOP
 NOP
 NOP
-SUM     R14 R14 R1
+SUM     R14 R14 R13
 NOP
 NOP
 NOP
 
 
 remap
+NOP
 CRG R2 R1
 SUMI R3 R13 0
 SUMI R1 R1 1
+NOP
 SUMI R2 R2 1024
 SUMI R13 R13 1
 NOP
@@ -198,15 +248,17 @@ NOP
 NOP
 ALM R3 R2
 NOP
-SMQ R1 R14 remap
+NOP
+SMQ R13 R14 remap
 
 NOP
 NOP
 NOP
-END
 NOP
 NOP
 NOP
-SAL END
+NOP
+NOP
+NOP
 NOP
 NOP
