@@ -8,4 +8,5 @@ DATA_RADIX = DEC; -- The radix for data values
 CONTENT -- start of (address : data pairs) 
 BEGIN
 0 : 0;
+1 : 85;
 END;

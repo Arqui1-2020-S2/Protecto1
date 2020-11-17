@@ -5,7 +5,6 @@ NOP
 SUMI    R1 R0 4
 NOP
 NOP
-<<<<<<< HEAD
 NOP
 SUMI    R2 R0 3
 NOP
@@ -15,22 +14,14 @@ SUMI    R3 R0 5
 NOP
 NOP
 NOP
-=======
-SUMI    R1 R0 4
-SUMI    R2 R0 3
-SUMI    R3 R0 5
->>>>>>> 33d7f268cff7c8222623ea1e0d0b30bd577effa2
 SUMI    R4 R0 2000
 NOP
 NOP
 NOP
 
-<<<<<<< HEAD
 NOP
 NOP
 NOP
-=======
->>>>>>> 33d7f268cff7c8222623ea1e0d0b30bd577effa2
 SUMI    R5 R4 1
 NOP
 NOP
@@ -326,10 +317,7 @@ NOP
 SUMI    R2 R0 0
 NOP
 NOP
-<<<<<<< HEAD
 NOP
-=======
->>>>>>> 33d7f268cff7c8222623ea1e0d0b30bd577effa2
 
 NOP
 NOP
@@ -367,13 +355,9 @@ NOP
 NOP
 NOP
 prepare_table_3
-<<<<<<< HEAD
 NOP
 NOP
 NOP
-=======
-SUM     R8 R0 R2
->>>>>>> 33d7f268cff7c8222623ea1e0d0b30bd577effa2
 SR      R2 R2 3
 NOP
 NOP
@@ -443,7 +427,6 @@ NOP
 NOP
 NOP
 
-<<<<<<< HEAD
 NOP
 NOP
 NOP
@@ -460,21 +443,10 @@ NOP
 NOP
 NOP
 SUMI    R1 R0 0
-=======
-SL      R9 R2 3
-NOP
-NOP
->>>>>>> 33d7f268cff7c8222623ea1e0d0b30bd577effa2
-NOP
-SEQ     R8 R9 prepare_table4 
-SUMI    R8 R2 1
-SUMI    R9 R0 512
 NOP
 NOP
 NOP
-ALM     R9 R8
 
-<<<<<<< HEAD
 NOP
 NOP
 NOP
@@ -494,15 +466,6 @@ ALM     R11 R12
 NOP
 NOP
 NOP
-=======
-prepare_table4
-SUMI    R13 R0 512
-SUMI    R14 R0 768
-SUMI    R1 R0 0
-NOP
-NOP
-NOP
->>>>>>> 33d7f268cff7c8222623ea1e0d0b30bd577effa2
 
 NOP
 NOP
@@ -719,8 +682,4 @@ END
 NOP
 NOP
 NOP
-<<<<<<< HEAD
 SAL END
-=======
-SAL END
->>>>>>> 33d7f268cff7c8222623ea1e0d0b30bd577effa2

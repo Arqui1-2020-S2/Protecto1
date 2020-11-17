@@ -47,7 +47,46 @@ Inst_ROM instROM (
 	.wren(data_mem_WE),
 	.q(data_mem_out_data));
 	
-	
+//		
+// RAM_input_image ram_in0(
+//	.address(data_mem_address[15:0]),
+//	.clock(CLK_ng),
+//	.data(data_mem_in_data[7:0]),
+//	.wren(data_mem_WE),
+//	.q());
+//	
+// RAM_input_image ram_in1(
+//	.address(data_mem_address[15:0]),
+//	.clock(CLK_ng),
+//	.data(data_mem_in_data[7:0]),
+//	.wren(data_mem_WE),
+//	.q());
+// RAM_input_image ram_in2(
+//	.address(data_mem_address[15:0]),
+//	.clock(CLK_ng),
+//	.data(data_mem_in_data[7:0]),
+//	.wren(data_mem_WE),
+//	.q());
+// RAM_input_image ram_out0(
+//	.address(data_mem_address[15:0]),
+//	.clock(CLK_ng),
+//	.data(data_mem_in_data[7:0]),
+//	.wren(data_mem_WE),
+//	.q());
+//	
+// RAM_input_image ram_out1(
+//	.address(data_mem_address[15:0]),
+//	.clock(CLK_ng),
+//	.data(data_mem_in_data[7:0]),
+//	.wren(data_mem_WE),
+//	.q());
+//	
+// RAM_input_image ram_out2(
+//	.address(data_mem_address[15:0]),
+//	.clock(CLK_ng),
+//	.data(data_mem_in_data[7:0]),
+//	.wren(data_mem_WE),
+//	.q());
 	
 always #5 CLK=!CLK;
 
