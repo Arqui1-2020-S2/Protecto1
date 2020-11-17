@@ -32,7 +32,7 @@ Pipe_MEM_WB pipe_MEM_WB  (.CLK(CLK), .RST(RST_pipe_mem_wb),
 
 DataMemoryManager dataMemoryManager (.address_i(AluResult_mem), .CLK(CLK), 
 								.data_i(RD2_mem), .wren_i(MemWE_mem), 
-								.data_o(ReadData_mem),.byte_mode_i(byte_mode_i));
+								.data_o(ReadData_mem));
 
 								
 								

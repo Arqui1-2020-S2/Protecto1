@@ -1,7 +1,7 @@
 `timescale 1 ps / 1 ps
 
 module CPU_tb();
-
+ integer f_img_out,f_data_out;
 
  logic CLK, RST;
  logic [31:0] inst_mem_data,data_mem_out_data;
@@ -15,6 +15,8 @@ module CPU_tb();
  
  int counter=0;
 
+ 
+  logic [31:0] pos =0;
 CPU cpu (	
 							.CLK(CLK),.RST(RST), 
 							.inst_mem_data_i(inst_mem_data), 
@@ -31,23 +33,36 @@ Inst_ROM instROM (
 							.q(inst_mem_data));
 
 
-//Ram  #(.G(12),.mif_filename("mem_data/in_ram.txt")) dataMem (	
-//							.address_i(data_mem_address[9:0]), 
-//							.CLK(CLK), 
-//							.RST(RST), 
-//							.data_i(data_mem_in_data), 
-//							.EN(data_mem_WE), 
-//							.data_o(data_mem_out_data), 
-//							.ByteMode_i(byte_mode));
+DataMemoryManager    dataMemoryManager(	
+							.address_i(data_mem_address), 
+							.CLK(CLK_ng), 
+							.data_i(data_mem_in_data), 
+							.wren_i(data_mem_WE),
+							.data_o(data_mem_out_data), 
+							.LEDs_o() );
+							
+							
 
- RAM_test ram(
-	.address(data_mem_address[11:0]),
-	.clock(CLK_ng),
-	.data(data_mem_in_data),
-	.wren(data_mem_WE),
-	.q(data_mem_out_data));
+// RAM_test ram(
+//	.address(data_mem_address[11:0]),
+//	.clock(CLK_ng),
+//	.data(data_mem_in_data),
+//	.wren(data_mem_WE),
+//	.q(data_mem_out_data));
 	
-//		
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 // RAM_input_image ram_in0(
 //	.address(data_mem_address[15:0]),
 //	.clock(CLK_ng),
@@ -103,8 +118,27 @@ begin
 #1;
 if(data_mem_WE)
 begin
-$display("PC:inst_mem_address: %d, data_mem_address: %d, data_mem_in_data: %d", 
+		$display("PC:inst_mem_address: %d, data_mem_address: %d, data_mem_in_data: %d", 
               inst_mem_address,data_mem_address, data_mem_in_data);
+		if(data_mem_address>=32'd262144)
+		begin
+			$display("Imagen Salida");
+			pos=data_mem_address-32'd262144;
+			$fwrite(f_img_out,"%d : %d\n",pos ,data_mem_in_data  );
+		end
+		else if(data_mem_address<=32'd4095)
+		begin
+			$display("Datos");
+			pos=data_mem_address;
+			$fwrite(f_data_out,"%d : %d\n",pos ,data_mem_in_data  );
+		end			
+		
+end
+
+
+if(data_mem_WE)
+begin
+	
 end
 //if(data_mem_WE)
 //begin
@@ -119,6 +153,9 @@ end
 
 initial
 begin
+f_img_out = $fopen("IMG_OUT.txt","w");
+f_data_out = $fopen("DATA_OUT.txt","w");
+
 CLK=0;
 #1;
 RST=1;
@@ -128,7 +165,8 @@ RST=0;
 
 //wait(inst_mem_address==187);
 //$finish;
-
+//$fclose(f);  
+//$finish;
 
 
 end
