@@ -22,3 +22,9 @@ Formato de archivo:
 
 index : value;
 
+### Depuración de Dump
+Dentro de la carpeta image utils ejecutar el siguiente comando.
+```
+python3 imageUtils.py -d ./input/dump.test.txt
+
+```  
