@@ -99,10 +99,33 @@ def processImage(filename):
     # plotImage(unifyPixelArray, 400)
 
 
+# Toma un archivo generado por el dump del proyecto.
+# Luego genera una lista en donde la llave será la posición
+# y el valor posicional será el value respectivo.
+def mapFromMif(filename):
+    fileInput = open(filename, "r")
+    result = np.zeros(4096)
+    with open(filename) as file_in:
+        for line in file_in:
+            rawLineData = line.replace(' ','').split(':')
+            key = int(rawLineData[0])
+            value = int(rawLineData[1])
+            if( key < 4096):
+                result[key] = value
+    return result
+
+# Imprime el archivo respectivo de salida
+def arrayToFile(arrayInput,filename):
+    fileOutput = open(filename, "w")
+    for key in range (0 , len(arrayInput)):
+        line = """{key} : {value} \n""".format(key=key, value= str(int(arrayInput[key])))
+        fileOutput.write(line)
+    fileOutput.write(line + "\n")
+    fileOutput.close()
 
 
 def main(argv):
-    opts, args = getopt.getopt(argv, "i:s:", ["inputFile", "show" ])
+    opts, args = getopt.getopt(argv, "i:s:d:", ["inputFile", "show" , "debug"])
     for opt, arg in opts:
       if opt == '-i':
         # "inputImage.png"
@@ -119,6 +142,10 @@ def main(argv):
         completeImageArray = array1 + array2 + array3[0:limit]
         plotImage(completeImageArray,400)
         #print(len(completeImageArray))
+      elif opt in ("-d", "--debug"):
+          print(arg)
+          arrayInput = mapFromMif(arg)
+          arrayToFile(arrayInput, './output/debug.txt')
 
 if __name__ == "__main__":
    main(sys.argv[1:])
