@@ -35,11 +35,12 @@ Inst_ROM instROM (
 
 DataMemoryManager    dataMemoryManager(	
 							.address_i(data_mem_address), 
-							.CLK(CLK_ng), 
+							.CLK(CLK), 
 							.data_i(data_mem_in_data), 
 							.wren_i(data_mem_WE),
+							.button_i(),
 							.data_o(data_mem_out_data), 
-							.LEDs_o() );
+							.LEDs_o());
 							
 							
 
@@ -115,40 +116,40 @@ always @(posedge CLK) counter = counter+1;
 
 always @(posedge CLK)
 begin
-#1;
-if(data_mem_WE)
-begin
-		$display("PC:inst_mem_address: %d, data_mem_address: %d, data_mem_in_data: %d", 
-              inst_mem_address,data_mem_address, data_mem_in_data);
-		if(data_mem_address>=32'd262144)
-		begin
-			$display("Imagen Salida");
-			pos=data_mem_address-32'd262144;
-			$fwrite(f_img_out,"%d : %d\n",pos ,data_mem_in_data  );
-		end
-		else if(data_mem_address<=32'd4095)
-		begin
-			$display("Datos");
-			pos=data_mem_address;
-			$fwrite(f_data_out,"%d : %d\n",pos ,data_mem_in_data  );
-		end			
-		
+	#1;
+	if(data_mem_WE)
+	begin
+			$display("PC:inst_mem_address: %d, data_mem_address: %d, data_mem_in_data: %d", 
+					  inst_mem_address,data_mem_address, data_mem_in_data);
+			if(data_mem_address>=32'd262144)
+			begin
+				$display("Imagen Salida");
+				pos=data_mem_address-32'd262144;
+				$fwrite(f_img_out,"%d : %d\n",pos ,data_mem_in_data  );
+			end
+			else if(data_mem_address<=32'd4095)
+			begin
+				$display("Datos");
+				pos=data_mem_address;
+				$fwrite(f_data_out,"%d : %d\n",pos ,data_mem_in_data  );
+			end			
+			
+	end
 end
 
-
-if(data_mem_WE)
-begin
-	
-end
 //if(data_mem_WE)
 //begin
-//$display("data_mem_address: %d, data_mem_in_data: %d", 
-//              data_mem_address, data_mem_in_data);
+//	
 //end
+////if(data_mem_WE)
+////begin
+////$display("data_mem_address: %d, data_mem_in_data: %d", 
+////              data_mem_address, data_mem_in_data);
+////end
 
 
 
-end
+//end
 
 
 initial
