@@ -7,8 +7,11 @@ module CPU_tb();
  logic [31:0] inst_mem_data,data_mem_out_data;
  logic [31:0] data_mem_in_data,data_mem_address,inst_mem_address;
  logic data_mem_WE;
- 
- 
+ logic button=0;
+  logic [7:0] LEDs;
+  
+  
+  
  logic CLK_ng;
  assign CLK_ng=!CLK;
  logic byte_mode=0;
@@ -38,9 +41,9 @@ DataMemoryManager    dataMemoryManager(
 							.CLK(CLK), 
 							.data_i(data_mem_in_data), 
 							.wren_i(data_mem_WE),
-							.button_i(),
+							.button_i(button),
 							.data_o(data_mem_out_data), 
-							.LEDs_o());
+							.LEDs_o(LEDs));
 							
 							
 
@@ -125,8 +128,8 @@ begin
 			begin
 				$display("Imagen Salida");
 				pos=data_mem_address-32'd262144;
-				$fwrite(f_img_out,"%d ",data_mem_in_data);
-//				$fwrite(f_img_out,"%d : %d\n",pos ,data_mem_in_data  );
+//				$fwrite(f_img_out,"%d ",data_mem_in_data);
+				$fwrite(f_img_out,"%d : %d\n",pos ,data_mem_in_data  );
 
 			end
 			else if(data_mem_address<=32'd4095)

@@ -14,7 +14,7 @@ imhist(A);
 title("Histograma imagen original")
 
 % Imagen modificada
-B = load("-ascii","result_image.txt");
+B = load("-ascii","result_image_OCTAVE.txt");
 B = reshape(B,[400,400]);
 B = uint8(B);
 B = B';
