@@ -1,7 +1,7 @@
 from bitstring import BitArray
 
 # Memoria de uso general
-RAM = [0] * 5000
+RAM = [0] * 600000
 
 # Registros
 registers = [0] * 16
@@ -68,6 +68,9 @@ def CRG(reg1, reg2):
     reg2 = bin2int(reg2)
 
     addr = registers[reg2] # Obtener direccion
+
+    # print(addr)
+
     registers[reg1] = RAM[addr] # Cargar valor
 
     updatePC() # Actualizar PC
@@ -81,6 +84,7 @@ def ALM(reg1, reg2):
     reg2 = bin2int(reg2)
 
     addr = registers[reg1] # Obtener direccion
+
     RAM[addr] = registers[reg2] # Guardar valor
 
     updatePC() # Actualizar PC
